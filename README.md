@@ -5,7 +5,7 @@
 
 ## Description
 
-BfevToJsonConverter is a command-line tool for converting BFEVFL (Binary Formatted Event) files to JSON format. It uses the BfevLibrary by Arch Leaders to perform the conversion.
+BfevToJsonConverter is a command-line tool for converting BFEVFL files to JSON format. It uses the BfevLibrary by Arch Leaders to perform the conversion.
 
 ## Usage
 
@@ -18,13 +18,13 @@ To use BfevToJsonConverter, follow these steps:
 
 BfevToJsonConverter <directoryPath>
   
-Replace `<directoryPath>` with the path to the directory where your BFEV files are located.
+Replace `<directoryPath>` with the path to the directory where your BFEVFL files are located.
 
 For example:
   
 BfevToJsonConverter C:\Path\To\BFEV\Files
   
-The tool will convert each BFEV file found in the specified directory and its subdirectories to JSON format. The resulting JSON files will be saved with the same name and path as the original BFEV files.
+The tool will convert each BFEVFL file found in the specified directory and its subdirectories to JSON format. The resulting JSON files will be saved with the same name and path as the original BFEVFL files.
 
 ## License
 
