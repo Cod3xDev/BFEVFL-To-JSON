@@ -1,48 +1,63 @@
 ﻿using BfevLibrary;
+using System;
+using System.IO;
 
-// Copyright (c) 2023 Cod3xDev. All rights reserved.
-
-namespace BfevToJsonConverter
+namespace BfevflConverter
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // Check if directory path argument is provided
             if (args.Length == 0)
             {
-                Console.WriteLine("Please provide the directory path where your BFEV files are located.");
+                Console.WriteLine("Please provide the path to the JSON file or the directory containing JSON files.");
                 return;
             }
 
-            // Get directory path from command-line argument
-            string directoryPath = args[0];
+            string path = args[0];
 
-            // Get all files in the specified directory and its subdirectories
-            string[] fileEntries = Directory.GetFiles(directoryPath, "*.bfevfl", SearchOption.AllDirectories);
-
-            // Loop through each file and convert to JSON format
-            foreach (string filePath in fileEntries)
+            if (File.Exists(path))
             {
-                try
+                ConvertJsonToBfev(path);
+            }
+            else if (Directory.Exists(path))
+            {
+                string[] jsonFiles = Directory.GetFiles(path, "*.json", SearchOption.AllDirectories);
+                foreach (string jsonFile in jsonFiles)
                 {
-                    // Read BfevFile from file path
-                    BfevFile bfev = BfevFile.FromBinary(filePath);
-
-                    // Convert BfevFile to JSON format
-                    string json = bfev.ToJson();
-
-                    // Save JSON file with same name and path as the original BFEV file
-                    string jsonFilePath = Path.ChangeExtension(filePath, ".json");
-                    File.WriteAllText(jsonFilePath, json);
+                    ConvertJsonToBfev(jsonFile);
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error converting file {filePath}: {ex.Message}");
-                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid path specified.");
             }
 
             Console.WriteLine("Conversion complete!");
+        }
+
+        static void ConvertJsonToBfev(string jsonFilePath)
+        {
+            try
+            {
+                // Read JSON file contents
+                string json = File.ReadAllText(jsonFilePath);
+
+                // Convert JSON to BfevFile
+                BfevFile bfev = BfevFile.FromJson(json);
+
+                // Generate BFEV file path
+                string bfevFilePath = Path.ChangeExtension(jsonFilePath, ".bfevfl");
+
+                // Convert BfevFile to BFEV format
+                bfev.ToBinary(bfevFilePath);
+
+                Console.WriteLine($"Successfully converted '{jsonFilePath}' to BFEV.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error converting file {jsonFilePath}: {ex.Message}");
+            }
         }
     }
 }
