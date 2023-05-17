@@ -1,7 +1,7 @@
 # BfevToJsonConverter
 
 [![License](https://img.shields.io/badge/License-AGPL%20v3.0-blue.svg)](LICENSE.txt)
-[![Downloads](https://img.shields.io/github/downloads/your-username/your-repository/total)](https://github.com/your-username/your-repository/releases)
+[![Downloads](https://img.shields.io/github/downloads/Cod3xDev/BFEVFL-To-JSON/total)](https://github.com/Cod3xDev/BFEVFL-To-JSON/releases)
 
 ## Description
 
