@@ -2,6 +2,8 @@
 using System;
 using System.IO;
 
+// Copyright (c) 2023 Cod3xDev. All rights reserved.
+
 namespace BfevflConverter
 {
     class Program
@@ -52,7 +54,7 @@ namespace BfevflConverter
                 // Convert BfevFile to BFEV format
                 bfev.ToBinary(bfevFilePath);
 
-                Console.WriteLine($"Successfully converted '{jsonFilePath}' to BFEV.");
+                Console.WriteLine($"Successfully converted '{jsonFilePath}' to BFEVFL.");
             }
             catch (Exception ex)
             {
